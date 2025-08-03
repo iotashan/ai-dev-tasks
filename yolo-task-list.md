@@ -5,6 +5,11 @@
 - Update task list in real-time as work progresses
 - Document all decisions and blockers for human review
 
+## MCP Tool Usage Rules
+- **Before every task:** Use `zen:planner` to strategize approach
+- **Important decisions:** Use `zen:consensus` to evaluate options
+- **Bugs/problems:** Use `zen:debugger` to analyze and solve issues
+
 ## TDD Process (Mandatory for Coding)
 1. **RED:** Write failing tests first → commit `test: add failing tests for [feature]`
 2. **GREEN:** Write minimal code to pass → commit `feat: implement [feature]`
@@ -22,6 +27,7 @@ Create `after-tasks-list.md` as an interactive review document for generating fo
 
 ### Format as Questions for LLM Processing
 Structure each item as a question that can be answered to generate new tasks:
+**Note:** Use `zen:consensus` before documenting architecture decisions or major trade-offs
 
 ```markdown
 # After-Tasks Review - Interactive Questions
@@ -77,16 +83,18 @@ This format enables the LLM to:
 4. Generate specific follow-up tasks from answers
 
 ## Task Implementation
-1. Complete tasks sequentially in order
-2. Mark sub-tasks `[x]` immediately upon completion
-3. Run tests after each sub-task
-4. Commit after each sub-task (not just parent tasks)
-5. Mark parent `[x]` only after ALL sub-tasks complete
+1. Use `zen:planner` before starting each parent task
+2. Complete tasks sequentially in order
+3. Mark sub-tasks `[x]` immediately upon completion
+4. Run tests after each sub-task
+5. Commit after each sub-task (not just parent tasks)
+6. Mark parent `[x]` only after ALL sub-tasks complete
+7. Use `zen:debugger` if tests fail or errors occur
 
 ## Auto-Compaction Protocol
 When conversation is auto-compacted:
 1. Re-read this entire document
-2. List and verify all MCP servers
+2. List and verify all MCP servers (especially zen:planner, zen:consensus, zen:debugger)
 3. Review current task list state
 4. Check after-tasks-list for pending items
 5. Resume from last completed task
@@ -100,8 +108,11 @@ When conversation is auto-compacted:
 Maintain "Relevant Files" section with all created/modified files + descriptions.
 
 ## AI Instructions
+- Use `zen:planner` before starting each parent task
 - Start with first incomplete task, continue until all done
 - Never skip TDD cycle for coding tasks
+- Use `zen:consensus` for architecture decisions and trade-offs
+- Use `zen:debugger` when encountering bugs or test failures
 - Document ANY assumption or workaround in after-tasks-list
 - If blocked, document why and continue with next possible task
 - Only stop when all tasks are completed or documented as blocked
